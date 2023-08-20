@@ -6,6 +6,5 @@ public enum ProjectDeployTarget: String {
     case stage = "STAGE"
     case prod = "PROD"
     
-    
 }
 

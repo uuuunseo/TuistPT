@@ -17,9 +17,9 @@ public extension Project {
         let settings: Settings = .settings(
             base: [:],
             configurations: [
-                .debug(name: .dev),
-                .debug(name: .stage),
-                .release(name: .prod)
+                .debug(name: .dev, xcconfig: .relativeToRoot("XCConfig/App/DEV.xcconfig")),
+                .debug(name: .stage, xcconfig: .relativeToRoot("XCConfig/App/STAGE.xcconfig")),
+                .release(name: .prod, xcconfig: .relativeToRoot("XCConfig/App/PROD.xcconfig"))
             ], defaultSettings: .recommended)
         
         let appTarget = Target(
@@ -45,7 +45,12 @@ public extension Project {
             dependencies: [.target(name: name)]
         )
         
-        let schemes: [Scheme] = [.makeScheme(target: .debug, name: name)]
+        let schemes: [Scheme] =
+        [
+            .makeScheme(target: .dev, name: name),
+            .makeScheme(target: .stage, name: name),
+            .makeScheme(target: .prod, name: name)
+        ]
         
         let targets: [Target] = [appTarget, testTarget]
         
