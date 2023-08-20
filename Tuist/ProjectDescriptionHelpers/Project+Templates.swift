@@ -1,4 +1,5 @@
 import ProjectDescription
+import ConfigurationPlugin
 
 public extension Project {
     static func makeModule(
@@ -16,8 +17,9 @@ public extension Project {
         let settings: Settings = .settings(
             base: [:],
             configurations: [
-                .debug(name: .debug),
-                .release(name: .release)
+                .debug(name: .dev),
+                .debug(name: .stage),
+                .release(name: .prod)
             ], defaultSettings: .recommended)
         
         let appTarget = Target(
