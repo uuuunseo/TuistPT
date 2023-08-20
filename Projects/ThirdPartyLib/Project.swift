@@ -1,5 +1,6 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
+import TestPlugin
 
 let project = Project.makeModule(
     name: "ThirdPartyLib",
